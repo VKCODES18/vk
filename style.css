@@ -1,13 +1,14 @@
+/* --- BASE STYLES (These apply to ALL screen sizes, including Laptops/Desktops by default) --- */
+/* Think of these as your "desktop-first" or default styles. */
 body {
     background-size: cover;
     background-attachment: fixed;
-    /* These styles apply to the body to center the form */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-image: url('background1.jpg'); 
+    background-image: url('background1.jpg'); /* Ensure this path is correct */
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -16,62 +17,133 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    width: 300px;
+    width: 300px; /* Default logo width for larger screens */
     height: auto;
 }
 
 form {
-    /* Your existing form styles, adjusted for flexbox layout */
     display: flex;
-    flex-direction: column; /* Stacks the input-groups vertically */
-    align-items: center; /* Centers items horizontally within the form */
-    width: 100%;
-    max-width: 500px; /* Limits the form's width */
-    padding: 30px; /* Add some padding around the form content */
-    background-color: transparent; /* Optional: a slight translucent background */
-    border-radius: 8px; /* Optional: rounded corners for the form box */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: a subtle shadow */
+    flex-direction: column; /* Stack elements vertically in a column */
+    align-items: center; /* Center horizontally within the form */
+    width: 100%; /* Form takes full width of its container (up to max-width) */
+    max-width: 400px; /* Maximum width for the form on larger screens (laptops) */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* NEW: Style for the container wrapping each ion-icon and input */
 .input-group {
-    display: flex; /* Makes the icon and input sit side-by-side */
+    display: flex; /* Makes the icon and input side-by-side */
     align-items: center; /* Vertically aligns the icon and input */
-    width: 100%; /* Ensures the group takes full width of the form */
-    margin-bottom: 15px; /* Adds vertical space between each input field group */
-    border: 1px solid #ccc; /* Adds a border around the combined icon and input */
-    border-radius: 4px; /* Optional: slightly rounded corners for the input box */
+    width: 100%; /* Ensures each input group takes full width of the form */
+    margin-bottom: 15px; /* Vertical space between input groups */
+    border: 1px solid #ccc;
+    border-radius: 4px;
     padding: 8px 10px; /* Padding inside the input box, around icon and input */
-    background-color: white; /* Ensure background is white for the input area */
+    background-color: white;
 }
 
-/* NEW: Style for the ion-icons */
 .input-group ion-icon {
-    margin-right: 10px; /* Space between the icon and the input field */
-    font-size: 1.3em; /* Adjust icon size as needed */
-    color: #888; /* Color for the icons */
+    margin-right: 10px; /* Space between icon and input field */
+    font-size: 1.3em; /* Icon size for larger screens */
+    color: #888;
 }
 
 input {
-    /* Adjustments for inputs within the .input-group */
-    flex-grow: 1; /* Allows the input to take up the remaining space within .input-group */
-    border: none; /* Remove default input border as it's now on .input-group */
-    outline: none; /* Remove the outline when focused */
-    padding: 0; /* Remove internal padding from the input, padding is on .input-group */
-    font-size: 1em; /* Ensures consistent text size */
-    height: 30px; /* Optional: Set a fixed height for consistency if needed */
+    flex-grow: 1; /* Input takes up remaining space in the .input-group */
+    border: none;
+    outline: none;
+    padding: 0;
+    font-size: 1em; /* Input text size for larger screens */
+    height: 30px; /* Consistent input height */
 }
 
 input[type="submit"] {
     background-color: rgb(29, 29, 199);
     color: white;
-    padding: 20px 25px; /* Adjust padding for a larger button */
+    padding: 12px 25px; /* Button padding for larger screens */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1.1em;
-    margin-top: 20px; /* Space above the submit button */
-    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    font-size: 1.1em; /* Button font size for larger screens */
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(20, 20, 150);
 }
 
 
+/* --- MOBILE-SPECIFIC STYLES (These override base styles on smaller screens) --- */
+
+/* For screens smaller than or equal to 768px (e.g., tablets in portrait, large phones) */
+@media (max-width: 768px) {
+    .logo {
+        width: 200px; /* Make logo smaller */
+        top: 5px;
+        right: 5px;
+    }
+
+    form {
+        max-width: 90%; /* Allow form to take up more width, but with some margin */
+        padding: 15px; /* Reduce form padding */
+    }
+
+    .input-group {
+        padding: 6px 8px; /* Slightly less padding for input groups */
+        margin-bottom: 12px; /* Reduce space between input fields */
+    }
+
+    .input-group ion-icon {
+        font-size: 1.1em; /* Slightly smaller icons */
+        margin-right: 8px; /* Reduce icon margin */
+    }
+
+    input {
+        font-size: 0.95em; /* Slightly smaller text in inputs */
+        height: 28px; /* Adjust input height */
+    }
+
+    input[type="submit"] {
+        padding: 10px 20px; /* Smaller button padding */
+        font-size: 1em; /* Smaller button font size */
+        margin-top: 15px; /* Reduce margin above button */
+    }
+}
+
+/* For screens smaller than or equal to 480px (e.g., typical mobile phones) */
+@media (max-width: 480px) {
+    .logo {
+        width: 150px; /* Even smaller logo */
+        top: 5px;
+        right: 5px;
+    }
+
+    form {
+        max-width: 95%; /* Allow form to take almost full width on very small screens */
+        padding: 10px; /* Minimal padding */
+    }
+
+    .input-group {
+        padding: 5px 6px; /* Minimal padding for input groups */
+        margin-bottom: 10px; /* Tighten spacing */
+    }
+
+    .input-group ion-icon {
+        font-size: 1em; /* Further reduce icon size */
+        margin-right: 5px; /* Less space for icon */
+    }
+
+    input {
+        font-size: 0.9em; /* Smaller text */
+        height: 25px; /* Reduce input height */
+    }
+
+    input[type="submit"] {
+        padding: 8px 15px; /* Even smaller button */
+        font-size: 0.9em;
+        margin-top: 10px;
+    }
+}
